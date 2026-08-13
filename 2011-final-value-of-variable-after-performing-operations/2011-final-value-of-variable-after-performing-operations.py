@@ -1,9 +1,9 @@
 class Solution:
     def finalValueAfterOperations(self, operations) :
-        x = 0
+        ans = 0
         for op in operations:
             if op[1] == '+':
-                x += 1
+                ans += 1
             else:
-                x -= 1
-        return x
+                ans -= 1
+        return ans

@@ -11,8 +11,6 @@ public:
         temp.push_back(candidates[idx]) ;
         helper(candidates, temp, ans, target-candidates[idx], idx) ;
 
-        //helper(candidates, temp, ans, target-candidates[idx], idx+1) ;
-
         temp.pop_back() ;
         helper(candidates, temp, ans, target, idx+1) ;
         

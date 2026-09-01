@@ -14,10 +14,10 @@ public:
 
             if( (val > nxt && val > prev) || (val < nxt && val < prev) ) {
                 if(prevCrit == -1) {
-                    firstCrit = idx ;
-                    prevCrit = idx ;
-                }else {
-                    ans[0] = (ans[0] == 0 || ans[0] == -1) ? idx-prevCrit : min(ans[0], idx-prevCrit) ;
+                    firstCrit = prevCrit = idx ;
+                }
+                else {
+                    ans[0] = ans[0] == -1 ? idx-prevCrit : min(ans[0], idx-prevCrit) ;
                     prevCrit = idx ;
                 }
                 

@@ -26,7 +26,6 @@ public:
             ans.push_back(curr) ;
         }
 
-        sort(ans.begin(), ans.end()) ;
         return ans ;
     }
 };

@@ -5,33 +5,21 @@ public:
         vector<int> ans(n, 0) ;
         if(k == 0) {
             return ans ;
-        }else if(k > 0) {
-            int sum = 0 ;
-            for(int i = 0 ; i < k ; i++) {
-                sum += code[i] ;
-            }
+        }
 
-            for(int i = 0 ; i < n ; i++) {
-                sum -= code[i] ;
-                int idx = (i + k) % n ;
+        int st = k > 0 ? 1 : n + k ;
+        int end = k > 0 ? k : n - 1 ;
+        int sum = 0 ;
 
-                sum += code[idx] ;
+        for(int i = st ; i <= end ; i++) {
+            sum += code[i] ;
+        }
 
-                ans[i] = sum ;
-            }
-        }else{
-            k = k * (-1) ;
-            int sum = 0 ;
-            for(int i = n-1 ; i >= n-k ; i--) {
-                sum += code[i] ;
-            }
+        for(int i = 0 ; i < code.size() ; i++) {
+            ans[i] = sum ;
 
-            for(int i = 0 ; i < n ; i++) {
-                ans[i] = sum ;
-                int idx = (n-k + i) % n ;
-                sum -= code[idx] ;
-                sum += code[i] ;
-            }
+            sum -= code[(st + i) % n] ;
+            sum += code[(end + i + 1) % n] ;
         }
 
         return ans ;

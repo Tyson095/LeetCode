@@ -14,11 +14,9 @@ public:
         }
 
         while(q.size() > 0) {
-            auto x = q.front();
+            auto [position, time] = q.front();
             q.pop();
-            int i = x.first.first;
-            int j = x.first.second;
-            int time = x.second;
+            auto [i, j] = position;
 
             ans = max(ans, time);
 

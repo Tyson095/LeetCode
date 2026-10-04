@@ -18,7 +18,7 @@ public:
             
             if (cmax < 0) return false;
             
-            if (cmin < 0) cmin = 0;
+            if (cmin < 0) cmin = 0; // if cmin < 0 and cmax >= 0, it means if we leave * we can achive valid paranthesis
         }
         
         return cmin == 0;

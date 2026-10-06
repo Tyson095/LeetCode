@@ -1,20 +1,20 @@
 class Solution {
 public:
     int scoreOfParentheses(string s) {
-        stack<int> st;
-        st.push(0);
+        stack<int> stk;
+        stk.push(0);
 
-        for (char c : s) {
-            if (c == '(') {
-                st.push(0);
-            } else {
-                int current = st.top();
-                st.pop();
+        for(char c : s) {
+            if(c == '(') {
+                stk.push(0);
+            }else {
+                int curr = stk.top();
+                stk.pop();
 
-                st.top() += max(1, 2 * current);
+                stk.top() += max(1, 2 * curr);
             }
         }
 
-        return st.top();
+        return stk.top();
     }
 };

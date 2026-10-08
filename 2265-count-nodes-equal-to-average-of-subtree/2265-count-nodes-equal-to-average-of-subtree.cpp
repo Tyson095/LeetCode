@@ -1,27 +1,27 @@
 class Solution {
 public:
-    int reqRoots = 0 ;
-
+    int ans = 0;
     pair<int, int> dfs(TreeNode* root) {
         if(!root) {
-            return {0, 0} ;
+            return {0, 0};
         }
 
-        auto [leftCount, leftSum] = dfs(root->left) ;
-        auto [rightCount, rightSum] = dfs(root->right) ;
+        auto [leftSum, leftCount] = dfs(root->left);
+        auto [rightSum, rightCount] = dfs(root->right);
 
-        int sum = leftSum + rightSum + root->val ;
-        int n = leftCount + rightCount + 1 ;
+        int sum = leftSum + rightSum + root->val;
+        int count = leftCount + rightCount + 1;
 
-        if(root->val == (sum/n)) {
-            reqRoots++ ;
+        if(sum / count == root->val) {
+            ans++;
         }
 
-        return {n, sum} ;
+        return {sum, count};
     }
 
     int averageOfSubtree(TreeNode* root) {
-        dfs(root) ;
-        return reqRoots ;
+        dfs(root);
+
+        return ans;    
     }
 };

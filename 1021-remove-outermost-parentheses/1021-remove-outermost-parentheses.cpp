@@ -3,21 +3,17 @@ public:
     string removeOuterParentheses(string s) {
         string ans;
         int count = 0;
-        deque<int> dq;
+        int l = 0, r = 0;
 
-        for(int i = 0; i < s.size(); i++) {
-            if(s[i] == '(') {
+        for(; r < s.size(); r++) {
+            if(s[r] == '(') {
                 count++;
-                dq.push_back(s[i]);
             }else {
                 count--;
                 if(count == 0) {
-                    dq.pop_front();
-                    string temp(dq.begin(), dq.end());
+                    string temp(s.begin()+l+1, s.begin()+r);
+                    l = r+1;
                     ans += temp;
-                    dq.clear();
-                }else {
-                    dq.push_back(s[i]);
                 }
             }
         }

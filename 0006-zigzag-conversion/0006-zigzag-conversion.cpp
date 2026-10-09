@@ -1,29 +1,27 @@
+                        // Method - 2
 class Solution {
 public:
     string convert(string s, int n) {
-        vector<vector<char>> temp(n);
+        if(n == 1 || n >= s.size()) {
+            return s;
+        }
+        
+        vector<string> temp(n);
 
-        for(int i = 0; i < s.size(); i++) {
-            for(int j = 0; j < n; j++) {
-                if(i < s.size()) {
-                    temp[j].push_back(s[i++]);
-                }
+        for(int i = 0; i < s.size();) {
+            for(int j = 0; j < n && i < s.size(); j++) {
+                temp[j] += s[i++];
             }
 
-            for(int j = n-2; j > 0; j--) {
-                if(i < s.size()) {
-                    temp[j].push_back(s[i++]);
-                }
+            for(int j = n-2; i < s.size() && j > 0; j--) {
+                temp[j] += s[i++];
             }
-            i--;
         }
 
         string ans;
 
         for(auto i : temp) {
-            for(auto c : i) {
-                ans += c;
-            }
+            ans += i;
         }
 
         return ans;

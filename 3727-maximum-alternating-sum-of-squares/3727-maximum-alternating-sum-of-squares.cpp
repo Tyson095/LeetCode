@@ -10,14 +10,12 @@ public:
 
         sort(nums.begin(), nums.end());
 
-        int l = 0, r = n-1;
+        for(int i = 0; i < n/2; i++) {
+            ans -= nums[i];
+        }
 
-        while(l <= r) {
-            if(r == l) {
-                ans += nums[r--];
-            }else {
-                ans += nums[r--] - nums[l++];
-            }
+        for(int i = n/2; i < n; i++) {
+            ans += nums[i];
         }
 
         return ans;

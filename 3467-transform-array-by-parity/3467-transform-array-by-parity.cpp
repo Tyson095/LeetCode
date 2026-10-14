@@ -1,20 +1,23 @@
 class Solution {
 public:
     vector<int> transformArray(vector<int>& nums) {
-        int even = 0 ;
-        vector<int> ans ;
+        int even = 0;
 
         for(int i : nums) {
             if(i % 2 == 0) {
-                even++ ;
-                ans.push_back(0) ;
+                even++;
             }
         }
 
-        for(int i = even ; i < nums.size() ; i++) {
-            ans.push_back(1) ;
+        for(int i = 0, j = even; i < even || j < nums.size(); i++, j++) {
+            if(i < even) {
+                nums[i] = 0;
+            }
+            if(j < nums.size()) {
+                nums[j] = 1;
+            }
         }
 
-        return ans ;
+        return nums;
     }
 };

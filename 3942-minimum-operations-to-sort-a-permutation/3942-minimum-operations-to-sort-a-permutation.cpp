@@ -14,8 +14,6 @@ public:
             }
         }
 
-        // Check Case 1: Is it cyclically increasing starting from idx?
-        // E.g., nums[(idx + k) % n] should be k
         bool is_cyclic_inc = true;
         for (int k = 0; k < n; k++) {
             if (nums[(idx + k) % n] != k) {
@@ -24,8 +22,6 @@ public:
             }
         }
 
-        // Check Case 2: Is it cyclically decreasing starting from idx?
-        // E.g., nums[(idx - k + n) % n] should be k
         bool is_cyclic_dec = true;
         for (int k = 0; k < n; k++) {
             if (nums[(idx - k + n) % n] != k) {

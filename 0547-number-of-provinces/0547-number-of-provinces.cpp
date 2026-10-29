@@ -1,28 +1,55 @@
-class Solution {
-public:
-    void dfs(vector<vector<int>>& isConnected, int i, vector<bool>& vis) {
-        vis[i] = true;
+// Method-2 using DSU
 
-        for(int j = 0; j < isConnected.size(); j++) {
-            if(isConnected[i][j] && !vis[j]) {
-                dfs(isConnected, j, vis);
-            }
+class Solution {
+private:
+    int find(int x, vector<int>& par) {
+        if(par[x] == x) {
+            return x;
+        }
+
+        return par[x] = find(par[x], par);
+    }
+
+    void unionByRank(vector<int>& par, vector<int>& rank, int u, int v) {
+        int parU = find(u, par);
+        int parV = find(v, par);
+
+        if(parU == parV) {
+            return;
+        }
+
+        if(rank[parU] == rank[parV]) {
+            par[parV] = parU;
+            rank[parU]++;
+        }else if(rank[parU] < rank[parV]) {
+            par[parU] = parV;
+        }else{
+            par[parV] = parU;
         }
     }
 
+public:
     int findCircleNum(vector<vector<int>>& isConnected) {
         int n = isConnected.size(), ans = 0;
-        vector<bool> vis(n, false);
+        vector<int> par(n), rank(n, 0);
+
+        for(int i = 0; i < n; i++) {
+            par[i] = i;
+        }
 
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < n; j++) {
-                if(isConnected[i][j] && !vis[i]) {
-                    dfs(isConnected, i, vis);
-                    ans++;
+                if(isConnected[i][j]) {
+                    unionByRank(par, rank, i, j);
                 }
             }
         }
+        set<int> s;
 
-        return ans;
+        for(int i = 0; i < n; i++) {
+            s.insert(find(i, par));
+        }
+
+        return s.size();
     }
 };

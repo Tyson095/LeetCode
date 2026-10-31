@@ -23,8 +23,7 @@ public:
                 return dp[i][j][last] = dfs(grid, i, j+1, 0, dp);
             }
         }else {
-            ans += dfs(grid, i, j+1, 0, dp)%MOD;
-            ans += dfs(grid, i+1, j, 1, dp)%MOD;
+            ans = (dfs(grid, i, j+1, 0, dp) + dfs(grid, i+1, j, 1, dp))% MOD;
         }
 
         return dp[i][j][last] = ans;
@@ -35,6 +34,6 @@ public:
         m = grid[0].size();
         vector<vector<vector<int>>> dp(n, vector<vector<int>>(m, vector<int>(2, -1)));  //store how many ways we can reach m-1, n-1 from i, j
 
-        return dfs(grid, 0, 0, 0, dp) % MOD;              // last(last move) -> -1 for starting, 0 -> right, 1 -> down
+        return dfs(grid, 0, 0, 0, dp);              // last(last move) -> -1 for starting, 0 -> right, 1 -> down
     }
 };

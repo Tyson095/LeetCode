@@ -5,7 +5,7 @@ public:
         int m = tasks.size();
         vector<int> ans(m);
 
-        using T = pair<long, pair<int, int>>;
+        using T = pair<long long, pair<int, int>>;
         using p = pair<int, int>;
         
         priority_queue<p, vector<p>, greater<p> > freeServers;     //  {server_weight, org_index}
